@@ -1,9 +1,17 @@
 const express = require('express')
-const router = express.Router()
+const route = express.Router()
+const contactController = require('../controllers/contactController')
 
-// use controller
-const controller = require('../controllers/controller')
+route.get('/', contactController.contact)
+route.get('/contact/hapus/:nama', contactController.hapusContact)
+route.get('/contact/edit/:nama', contactController.editContactPage)
+route.get('/contact/:nama', contactController.detailContact)
 
-router.get('/', controller.index)
+// route for server
+route.post('/saveContact', contactController.saveContact)
+route.post('/editContact', contactController.editContact)
 
-module.exports = router
+
+route.get('*', contactController.page404)
+
+module.exports = route

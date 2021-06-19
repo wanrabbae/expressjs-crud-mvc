@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-md-6">
+        <form action="/editContact" method="post">
+            <input type="hidden" value="<%= contact._id %>" name="id" id="id" class="form-control">
+            <div class="mb-3">
+                <label for="fn">Nama depan</label>
+                <input type="text" value="<%= contact.firstName %>" name="fn" id="fn" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="ln">Nama belakang</label>
+                <input type="text" value="<%= contact.lastName %>" name="ln" id="ln" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="nohp">No Hp</label>
+                <input type="text" value="<%= contact.nohp %>" name="nohp" class="form-control" id="nohp">
+            </div>
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="text" value="<%= contact.email %>" name="email" class="form-control" id="email">
+            </div>
+            <div class="mb-3">
+                <label for="notes">Notes</label>
+                <textarea type="text" rows="5" cols="10" name="notes" class="form-control"
+                    id="notes"><%= contact.notes %> </textarea>
+            </div>
+            <div class="mb-3">
+                <button type="submit" name="submit" class="btn btn-success">Save</button>
+                <a href="/contact/<%= contact.firstName %>" class="btn btn-warning">Back</a>
+            </div>
+        </form>
+    </div>
+</div>

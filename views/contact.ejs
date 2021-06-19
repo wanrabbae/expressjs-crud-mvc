@@ -1,0 +1,79 @@
+<div class="row justify-content-around">
+    <div class="col-md-12">
+        <a href="#" class="badge btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreate">Tambah</a>
+        <% if (msg.length !== 0) { %>
+        <div class="alert alert-success mt-2" role="alert">
+            <%= msg %>
+        </div>
+        <% } %>
+        <table class="table table-dark table-hover mt-3">
+            <thead>
+            </thead>
+            <tbody>
+                <% if (contact.length == 0) { %>
+                <tr>
+                    <td colspan="4">
+                        <div class="alert alert-warning text-center" role="alert">
+                            Contacts masih kosong!!
+                        </div>
+                    </td>
+                </tr>
+                <% } else { %>
+                <% let i = 1 %>
+                <% contact.forEach(ct => { %>
+                <tr>
+                    <td><%= i++ %></td>
+                    <td><%= ct.firstName %> <%= ct.lastName %></td>
+                    <td><%= ct.nohp %></td>
+                    <td>
+                        <a href="/contact/<%= ct.firstName %>" class="badge btn btn-success" id="detail">Detail</a>
+                    </td>
+                </tr>
+                <% }) %>
+
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal Create -->
+<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="modalCreate" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-dark" id="tc">Tambah Contact</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/saveContact" method="post">
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="text-dark" for="fn">Nama depan</label>
+                        <input type="text" class="form-control" id="fn" name="fn">
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-dark" for="ln">Nama belakang</label>
+                        <input type="text" class="form-control" id="ln" name="ln">
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-dark" for="nohp">No Hp / No WhatsApp</label>
+                        <input type="text" name="nohp" class="form-control" id="nohp">
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-dark" for="email">Email</label>
+                        <input type="text" name="email" class="form-control" id="email">
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-dark" for="notes">Notes</label>
+                        <textarea type="text" rows="5" cols="10" name="notes" class="form-control"
+                            id="notes"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
