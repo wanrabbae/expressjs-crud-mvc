@@ -8,6 +8,14 @@
     margin-top: 10%;
 } */
 
+.modal .modal-content {
+    border: none;
+}
+
+.modal #modaledit {
+    display: none;
+}
+
 .btn:focus {
     outline: none !important;
     box-shadow: none !important;

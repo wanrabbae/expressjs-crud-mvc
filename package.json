@@ -1,5 +1,5 @@
 {
-  "name": "contact app",
+  "name": "contact-app",
   "version": "1.0.0",
   "description": "Belajar express js dan mongoose",
   "main": "app.js",

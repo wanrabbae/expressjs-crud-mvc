@@ -1,6 +1,13 @@
 <div class="row justify-content-center">
     <div class="col-md-5">
         <h3 class="text-center">Detail contact <%= contact.firstName %> <%= contact.lastName %></h3>
+
+        <% if (msg.length !== 0) { %>
+        <div class="alert alert-success mt-2" role="alert">
+            <%= msg %>
+        </div>
+        <% } %>
+
         <% if (!contact) { %>
         <div class="alert alert-danger fw-bold" role="alert">
             Kontak tidak ditemukan!. <br> <a href="/" class="alert-link fw-normal"> &laquo; Kembali ke
@@ -23,12 +30,55 @@
                 </div>
 
                 <hr>
-                <a href="/contact/edit/<%= contact.firstName %>" class="btn btn-info badge  text-dark">edit</a>
+                <a href="#" class="btn btn-info badge text-dark" data-bs-toggle="modal"
+                    data-bs-target="#modalEdit">edit</a>
                 <a href="/contact/hapus/<%= contact.firstName %>" class="btn btn-danger badge "
                     onclick="return confirm('Anda yakin ?')">hapus</a>
                 <a href="/" class="card-link d-block mt-3">&laquo; Kembali</a>
             </div>
         </div>
         <% } %>
+    </div>
+</div>
+
+<!-- Modal Edit -->
+<div class="modal fade" id="modalEdit" tabindex="-1" aria-labelledby="modalEdit" aria-hidden="true">
+    <div class="modal-dialog modal-md" id="modaledit">
+        <div class="modal-content">
+            <div class="modal-header bg-success">
+                <h5 class="modal-title text-light" id="tc">Edit Contact</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/editContact" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="id" id="id" value="<%= contact._id %>">
+                    <div class="mb-3">
+                        <label class="text-dark" for="fn">Nama depan</label>
+                        <input type="text" value="<%= contact.firstName %>" class="form-control" id="fn" name="fn">
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-dark" for="ln">Nama belakang</label>
+                        <input type="text" value="<%= contact.lastName %>" class="form-control" id="ln" name="ln">
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-dark" for="nohp">No Hp / No WhatsApp</label>
+                        <input type="text" value="<%= contact.nohp %>" name="nohp" class="form-control" id="nohp">
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-dark" for="email">Email</label>
+                        <input type="text" value="<%= contact.email %>" name="email" class="form-control" id="email">
+                    </div>
+                    <div class="mb-3">
+                        <label class="text-dark" for="notes">Notes</label>
+                        <textarea type="text" rows="5" cols="10" name="notes" class="form-control"
+                            id="notes"><%= contact.notes %></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" name="submit" class="btn btn-success">Save</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>

@@ -18,18 +18,8 @@ const detailContact = async (req, res) => {
 
     res.render('contact/detail', {
         layout: 'layout/template',
-        contact
-    })
-}
-
-const editContactPage = async (req, res) => {
-    const contact = await Contact.findOne({
-        firstName: req.params.nama
-    })
-
-    res.render('contact/edit', {
-        layout: 'layout/template',
-        contact
+        contact,
+        msg: req.flash('msg')
     })
 }
 
@@ -52,7 +42,6 @@ const saveContact = async (req, res) => {
     req.flash('msg', 'Data kontak berhasil ditambahkan!')
     res.redirect('/')
 
-    // res.send(req.body)
 }
 
 // edit
@@ -69,7 +58,7 @@ const editContact = async (req, res) => {
         }
     })
     req.flash('msg', 'Data kontak berhasil diubah!')
-    res.redirect('/')
+    res.redirect(`/contact/${req.body.fn}`)
 }
 
 
@@ -87,7 +76,7 @@ const hapusContact = async (req, res) => {
 module.exports = {
     contact,
     page404,
-    editContactPage,
+    // editContactPage,
     saveContact,
     detailContact,
     hapusContact,
