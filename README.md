@@ -1,4 +1,4 @@
-# Node JS MVC Contact App
+# Express JS CRUD MVC Example
 
 ## Getting Started
 Pertama, anda harus membuat file `.env` di dalam root pastinya
