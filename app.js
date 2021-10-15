@@ -1,4 +1,3 @@
-// Pembuat = Akhmad Alwan X RPL
 const express = require('express')
 const ejs = require('ejs')
 const expressLayout = require('express-ejs-layouts')
